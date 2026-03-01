@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Question Hub</title>
+  <title>Compatibility Conversation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f6f7fb;
-      --ink: #0e1320;
-      --card: #ffffff;
-      --muted: #5a6475;
-      --brand: #0d9488;
-      --brand-2: #1d4ed8;
-      --line: #d7dfef;
-      --focus: #f59e0b;
-      --ring: 0 0 0 3px rgba(245, 158, 11, 0.35);
-      --shadow: 0 24px 60px rgba(13, 78, 120, 0.15);
+      --bg: #f6f2ea;
+      --card: #fffdf9;
+      --ink: #2f2a24;
+      --muted: #6b6258;
+      --line: #e6d9c8;
+      --brand: #b65c4c;
+      --brand-2: #d89a61;
+      --accent: #3f6d64;
+      --ok: #2c7a52;
+      --focus: 0 0 0 3px rgba(182, 92, 76, 0.25);
+      --shadow: 0 25px 60px rgba(61, 43, 30, 0.12);
     }
 
     * {
@@ -27,193 +28,263 @@
 
     body {
       margin: 0;
-      font-family: "Space Grotesk", sans-serif;
+      min-height: 100vh;
+      font-family: "Manrope", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 20% 15%, #cffafe 0, rgba(207, 250, 254, 0) 38%),
-        radial-gradient(circle at 90% 85%, #dbeafe 0, rgba(219, 234, 254, 0) 42%),
+        radial-gradient(circle at 14% 14%, #f4d8ce 0, transparent 35%),
+        radial-gradient(circle at 82% 80%, #efe0be 0, transparent 37%),
         var(--bg);
-      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 1.4rem;
     }
 
-    .wrap {
-      width: min(920px, 92vw);
-      margin: 2.5rem auto;
-      position: relative;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #e0f2fe;
-      color: #0c4a6e;
-      border-radius: 999px;
-      padding: 0.4rem 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-    }
-
-    .card {
-      margin-top: 0.75rem;
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.85));
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      border-radius: 24px;
+    .shell {
+      width: min(860px, 100%);
+      background: var(--card);
+      border: 1px solid #f4e9dd;
+      border-radius: 26px;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(4px);
       overflow: hidden;
-      animation: rise 700ms ease-out;
     }
 
-    .hero {
-      padding: 2.2rem 2rem 1.35rem;
-      background: linear-gradient(120deg, rgba(13, 148, 136, 0.15), rgba(29, 78, 216, 0.12));
+    .head {
+      padding: 1.3rem 1.4rem 0.8rem;
+      background: linear-gradient(130deg, rgba(182, 92, 76, 0.12), rgba(216, 154, 97, 0.17));
       border-bottom: 1px solid var(--line);
     }
 
-    h1 {
+    .kicker {
       margin: 0;
-      font-family: "Sora", sans-serif;
-      font-size: clamp(1.6rem, 2.2vw, 2.4rem);
-      letter-spacing: -0.03em;
-    }
-
-    .subtitle {
-      margin: 0.65rem 0 0;
-      max-width: 65ch;
-      color: var(--muted);
-      font-size: 1.02rem;
-      line-height: 1.45;
-    }
-
-    form {
-      padding: 1.5rem 2rem 2rem;
-      display: grid;
-      gap: 1rem;
-    }
-
-    .grid-2 {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .field {
-      display: grid;
-      gap: 0.5rem;
-    }
-
-    label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #7f5448;
       font-weight: 700;
-      font-size: 0.94rem;
+    }
+
+    h1 {
+      margin: 0.4rem 0 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.45rem, 2vw, 2rem);
+      line-height: 1.2;
       letter-spacing: 0.01em;
     }
 
-    input,
-    textarea,
-    select {
+    .sub {
+      margin: 0.55rem 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.95rem;
+      max-width: 65ch;
+    }
+
+    .progress-wrap {
+      padding: 0.9rem 1.4rem 0;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .progress {
+      height: 10px;
+      background: #f2e9de;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      transition: width 220ms ease;
+    }
+
+    form {
+      padding: 1.2rem 1.4rem 1.45rem;
+    }
+
+    .q-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 1.05rem;
+      background: #fff;
+      min-height: 205px;
+      animation: fade 260ms ease;
+    }
+
+    .section {
+      display: inline-block;
+      margin: 0;
+      font-size: 0.73rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .q-title {
+      margin: 0.35rem 0 0;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .req {
+      color: #9f2f27;
+      font-weight: 700;
+      margin-left: 0.25rem;
+      font-size: 0.9em;
+    }
+
+    .input-wrap {
+      margin-top: 1rem;
+    }
+
+    input[type="text"],
+    textarea {
       width: 100%;
       border: 1px solid var(--line);
+      background: #fffdfb;
       border-radius: 12px;
-      padding: 0.78rem 0.82rem;
+      padding: 0.72rem 0.78rem;
       font: inherit;
       color: var(--ink);
-      background: #fff;
-      transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 130px;
       resize: vertical;
     }
 
     input:focus,
-    textarea:focus,
-    select:focus {
-      outline: 0;
-      border-color: var(--focus);
-      box-shadow: var(--ring);
-      transform: translateY(-1px);
+    textarea:focus {
+      outline: none;
+      box-shadow: var(--focus);
+      border-color: #d38e7e;
     }
 
-    .question-box {
-      border: 1px dashed #9ca3af;
-      border-radius: 16px;
-      padding: 1rem;
-      background: #f9fafb;
-      animation: fade 600ms ease forwards;
+    .options {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.25rem;
     }
 
-    .question-head {
-      margin: 0 0 0.8rem;
-      font-weight: 700;
-      color: #1f2937;
-      font-size: 0.94rem;
-      letter-spacing: 0.01em;
+    .option {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.65rem 0.7rem;
+      background: #fffdfb;
+      transition: border-color 150ms ease, background 150ms ease;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      border-color: #d7b091;
+      background: #fff8ef;
+    }
+
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      gap: 0.45rem;
+      margin-top: 0.25rem;
+    }
+
+    .scale label {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.45rem 0;
+      text-align: center;
+      font-weight: 600;
+      cursor: pointer;
+      background: #fffdfb;
+      font-size: 0.92rem;
+    }
+
+    .scale input {
+      display: none;
+    }
+
+    .scale input:checked + span {
+      color: #fff;
+      background: linear-gradient(120deg, var(--brand), var(--brand-2));
+      border-radius: 8px;
+      display: inline-block;
+      padding: 0.2rem 0.42rem;
+      min-width: 1.5rem;
     }
 
     .actions {
       display: flex;
-      gap: 0.75rem;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-top: 0.95rem;
       flex-wrap: wrap;
-      margin-top: 0.25rem;
     }
 
     button {
-      appearance: none;
       border: 0;
       border-radius: 12px;
       font: inherit;
       font-weight: 700;
       cursor: pointer;
-      padding: 0.8rem 1rem;
+      padding: 0.72rem 1.05rem;
     }
 
-    .btn-main {
-      color: white;
+    .btn-back {
+      background: #ece4d8;
+      color: #4f4136;
+    }
+
+    .btn-next {
       background: linear-gradient(120deg, var(--brand), var(--brand-2));
-      min-width: 180px;
-    }
-
-    .btn-main:hover {
-      filter: brightness(1.05);
-    }
-
-    .btn-ghost {
-      background: #e2e8f0;
-      color: #1f2937;
+      color: #fff;
+      min-width: 160px;
     }
 
     .status {
-      min-height: 1.2rem;
+      min-height: 1.15rem;
+      margin: 0.55rem 0 0;
       font-weight: 600;
-      color: #0f766e;
-      margin: 0;
+      color: #9f2f27;
+      font-size: 0.9rem;
     }
 
-    footer {
-      padding: 0.8rem 2rem 1.6rem;
+    .success {
+      color: var(--ok);
+    }
+
+    .hide {
+      display: none;
+    }
+
+    .bot {
+      position: absolute;
+      left: -100vw;
+      top: -100vh;
+      opacity: 0;
+    }
+
+    .hint {
+      margin: 0.65rem 0 0;
       color: var(--muted);
-      font-size: 0.84rem;
-    }
-
-    @keyframes rise {
-      from {
-        opacity: 0;
-        transform: translateY(8px) scale(0.99);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      font-size: 0.8rem;
     }
 
     @keyframes fade {
       from {
         opacity: 0;
-        transform: translateY(4px);
+        transform: translateY(5px);
       }
       to {
         opacity: 1;
@@ -221,122 +292,322 @@
       }
     }
 
-    @media (max-width: 760px) {
-      .hero,
-      form,
-      footer {
+    @media (max-width: 720px) {
+      .head,
+      .progress-wrap,
+      form {
         padding-left: 1rem;
         padding-right: 1rem;
       }
 
-      .grid-2 {
-        grid-template-columns: 1fr;
+      .q-card {
+        min-height: 185px;
+      }
+
+      .scale {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
       }
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <span class="badge">Your Custom Survey Link</span>
-    <section class="card">
-      <div class="hero">
-        <h1>Question Hub</h1>
-        <p class="subtitle">
-          Ask anything you want and collect responses in one shareable link. Edit the questions and colors in this file to match your style.
-        </p>
+  <main class="shell">
+    <header class="head">
+      <p class="kicker">Compatibility Form</p>
+      <h1>Compatibility Conversation</h1>
+      <p class="sub">A respectful pre-marriage conversation to understand values, expectations, emotional connection, and future goals.</p>
+    </header>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="stepLabel">Question 1</span>
+        <span id="stepCount">1 / 34</span>
+      </div>
+      <div class="progress">
+        <div id="bar" class="bar"></div>
+      </div>
+    </div>
+
+    <form id="form" novalidate>
+      <label class="bot" aria-hidden="true">Leave this empty <input type="text" id="botField" autocomplete="off" /></label>
+
+      <section class="q-card">
+        <p id="section" class="section"></p>
+        <h2 id="question" class="q-title"></h2>
+        <div id="inputWrap" class="input-wrap"></div>
+        <p id="hint" class="hint"></p>
+      </section>
+
+      <div class="actions">
+        <button id="backBtn" type="button" class="btn-back">Back</button>
+        <button id="nextBtn" type="button" class="btn-next">Next</button>
       </div>
 
-      <form name="question-hub" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="question-hub" />
-        <p hidden>
-          <label>Do not fill this out if you are human: <input name="bot-field" /></label>
-        </p>
-
-        <div class="grid-2">
-          <div class="field">
-            <label for="name">Your Name</label>
-            <input id="name" name="name" type="text" placeholder="Enter name" required />
-          </div>
-          <div class="field">
-            <label for="email">Your Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required />
-          </div>
-        </div>
-
-        <div class="question-box">
-          <p class="question-head">Question 1: How satisfied are you with our service?</p>
-          <div class="field">
-            <select name="satisfaction" required>
-              <option value="">Choose one</option>
-              <option>Very satisfied</option>
-              <option>Satisfied</option>
-              <option>Neutral</option>
-              <option>Not satisfied</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="question-box">
-          <p class="question-head">Question 2: What did you like most?</p>
-          <div class="field">
-            <textarea name="liked_most" placeholder="Write your answer..." required></textarea>
-          </div>
-        </div>
-
-        <div class="question-box">
-          <p class="question-head">Question 3: What should we improve?</p>
-          <div class="field">
-            <textarea name="improvements" placeholder="Share your suggestions..."></textarea>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="btn-main" type="submit">Send Answers</button>
-          <button class="btn-ghost" type="reset">Clear</button>
-        </div>
-        <p id="status" class="status" aria-live="polite"></p>
-      </form>
-
-      <footer>
-        Tip: Replace “Question Hub” and the 3 sample questions with your own text before sharing.
-        Optional: connect Google Sheets by setting <code>GOOGLE_SCRIPT_URL</code> in this file.
-      </footer>
-    </section>
+      <p id="status" class="status" aria-live="polite"></p>
+    </form>
   </main>
 
   <script>
-    const form = document.querySelector("form");
-    const status = document.getElementById("status");
     const GOOGLE_SCRIPT_URL = "";
 
-    form.addEventListener("submit", async (event) => {
-      if (!GOOGLE_SCRIPT_URL) {
-        status.textContent = "Submitting your answers...";
+    const questions = [
+      { id: "q1_name", section: "Basic", q: "1) Name", type: "text", required: true },
+      { id: "q2_comm", section: "Basic", q: "2) Preferred communication", type: "radio", options: ["Call", "Text", "Video", "In person"] },
+      { id: "q3_city", section: "Basic", q: "3) Current city", type: "text" },
+
+      { id: "q4_priorities", section: "Life Priorities", q: "4) Top 3 priorities now", type: "textarea", required: true },
+      { id: "q5_career", section: "Life Priorities", q: "5) Importance of career growth", type: "scale" },
+      { id: "q6_family", section: "Life Priorities", q: "6) Importance of family time", type: "scale" },
+
+      { id: "q7_healthy_marriage", section: "Marriage Expectations", q: "7) What is a healthy marriage to you?", type: "textarea", required: true },
+      { id: "q8_expectations", section: "Marriage Expectations", q: "8) Expectations from partner", type: "textarea", required: true },
+      { id: "q9_living", section: "Marriage Expectations", q: "9) Preferred living setup after marriage", type: "radio", options: ["With family", "Separate nearby", "Different city", "Open to discussion"] },
+
+      { id: "q10_food", section: "Lifestyle", q: "10) Food preference", type: "radio", options: ["Veg", "Non-veg", "Eggetarian", "Other"] },
+      { id: "q11_relocation", section: "Lifestyle", q: "11) Comfortable with travel/relocation?", type: "radio", options: ["Yes", "No"] },
+      { id: "q11_location_pref", section: "Lifestyle", q: "If no, what location preferences do you have?", type: "textarea", conditional: (a) => a.q11_relocation === "No" },
+      { id: "q12_disagreements", section: "Lifestyle", q: "12) How do you handle disagreements?", type: "radio", options: ["Calm discussion", "Need time", "Seek family advice", "Other"] },
+
+      { id: "q13_finance_view", section: "Finance & Future", q: "13) View on financial planning in marriage", type: "textarea" },
+      { id: "q14_budget", section: "Finance & Future", q: "14) Should both partners join budgeting decisions?", type: "radio", options: ["Yes", "No"] },
+      { id: "q14_how_decide", section: "Finance & Future", q: "If no, how should financial decisions be made?", type: "textarea", conditional: (a) => a.q14_budget === "No" },
+      { id: "q15_timeline", section: "Finance & Future", q: "15) Timeline preference for kids/home/career moves", type: "textarea" },
+
+      { id: "q16_why_partner", section: "Emotional Connection & Love Language", q: "16) Why do you want a life partner?", type: "textarea", required: true },
+      { id: "q17_feel_loved", section: "Emotional Connection & Love Language", q: "17) What makes you feel most loved?", type: "radio", options: ["Daily gestures", "Quality time", "Verbal appreciation", "Practical support", "Physical affection"] },
+      { id: "q18_matters_more", section: "Emotional Connection & Love Language", q: "18) Which matters more?", type: "radio", options: ["Consistency in small acts", "Emotional depth in meaningful moments", "Both"] },
+      { id: "q19_scenario", section: "Emotional Connection & Love Language", q: "19) Scenario: A husband buys flowers daily. Another buys less often but personally places flowers in wife's hair. What feels like love to you and why?", type: "textarea" },
+      { id: "q20_partner_express", section: "Emotional Connection & Love Language", q: "20) How do you want your partner to express love?", type: "textarea" },
+      { id: "q21_you_express", section: "Emotional Connection & Love Language", q: "21) How do you express love?", type: "textarea" },
+      { id: "q22_stress_support", section: "Emotional Connection & Love Language", q: "22) When stressed, what support do you want?", type: "radio", options: ["Listen", "Advise", "Give space", "Physical comfort", "Depends"] },
+      { id: "q23_time", section: "Emotional Connection & Love Language", q: "23) Expected meaningful couple time?", type: "radio", options: ["Daily", "Few times a week", "Weekly", "Flexible"] },
+      { id: "q24_hurts", section: "Emotional Connection & Love Language", q: "24) What hurts most?", type: "radio", options: ["Poor communication", "Low effort", "Disrespect", "Broken promises", "Emotional distance"] },
+      { id: "q25_repair", section: "Emotional Connection & Love Language", q: "25) After argument, best repair style?", type: "radio", options: ["Talk now", "Take time then talk", "Apology then discuss", "Message then talk"] },
+      { id: "q26_appreciation", section: "Emotional Connection & Love Language", q: "26) Importance of verbal appreciation", type: "scale" },
+      { id: "q27_receive", section: "Emotional Connection & Love Language", q: "27) Love language you receive best", type: "radio", options: ["Words", "Quality time", "Acts of service", "Gifts", "Physical touch"] },
+      { id: "q28_give", section: "Emotional Connection & Love Language", q: "28) Love language you naturally give", type: "radio", options: ["Words", "Quality time", "Acts of service", "Gifts", "Physical touch"] },
+      { id: "q29_affection", section: "Emotional Connection & Love Language", q: "29) Affection preference", type: "radio", options: ["Mostly private", "Mostly public", "Both"] },
+      { id: "q30_safe", section: "Emotional Connection & Love Language", q: "30) What makes you feel emotionally safe?", type: "textarea" },
+      { id: "q31_emotional_need", section: "Emotional Connection & Love Language", q: "31) One emotional need partner must understand deeply", type: "textarea" },
+
+      { id: "q32_non_negotiables", section: "Open", q: "32) Non-negotiables", type: "textarea" },
+      { id: "q33_flexible", section: "Open", q: "33) Flexible areas", type: "textarea" },
+      { id: "q34_anything_else", section: "Open", q: "34) Anything else to share?", type: "textarea" }
+    ];
+
+    const answers = {};
+    let index = 0;
+    const submittedAt = Date.now();
+
+    const sectionEl = document.getElementById("section");
+    const questionEl = document.getElementById("question");
+    const inputWrapEl = document.getElementById("inputWrap");
+    const stepLabelEl = document.getElementById("stepLabel");
+    const stepCountEl = document.getElementById("stepCount");
+    const barEl = document.getElementById("bar");
+    const statusEl = document.getElementById("status");
+    const hintEl = document.getElementById("hint");
+    const backBtn = document.getElementById("backBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const visibleQuestions = () => questions.filter((item) => (typeof item.conditional === "function" ? item.conditional(answers) : true));
+
+    function createTextInput(id, value = "") {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.id = id;
+      input.value = value;
+      input.autocomplete = "off";
+      return input;
+    }
+
+    function createTextarea(id, value = "") {
+      const t = document.createElement("textarea");
+      t.id = id;
+      t.value = value;
+      return t;
+    }
+
+    function createOptions(question) {
+      const box = document.createElement("div");
+      box.className = "options";
+      question.options.forEach((opt) => {
+        const id = `${question.id}_${opt.replace(/\s+/g, "_").toLowerCase()}`;
+        const label = document.createElement("label");
+        label.className = "option";
+        label.htmlFor = id;
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = question.id;
+        radio.id = id;
+        radio.value = opt;
+        if (answers[question.id] === opt) radio.checked = true;
+
+        const text = document.createElement("span");
+        text.textContent = opt;
+
+        label.appendChild(radio);
+        label.appendChild(text);
+        box.appendChild(label);
+      });
+      return box;
+    }
+
+    function createScale(question) {
+      const scale = document.createElement("div");
+      scale.className = "scale";
+      for (let i = 1; i <= 10; i += 1) {
+        const id = `${question.id}_${i}`;
+        const label = document.createElement("label");
+        label.htmlFor = id;
+
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = question.id;
+        input.id = id;
+        input.value = String(i);
+        if (String(answers[question.id] || "") === String(i)) input.checked = true;
+
+        const span = document.createElement("span");
+        span.textContent = i;
+
+        label.appendChild(input);
+        label.appendChild(span);
+        scale.appendChild(label);
+      }
+      return scale;
+    }
+
+    function collectAnswer(question) {
+      if (question.type === "text" || question.type === "textarea") {
+        const el = document.getElementById(question.id);
+        return el ? el.value.trim() : "";
+      }
+
+      if (question.type === "radio" || question.type === "scale") {
+        const checked = document.querySelector(`input[name="${question.id}"]:checked`);
+        return checked ? checked.value : "";
+      }
+
+      return "";
+    }
+
+    function validate(question, value) {
+      if (!question.required) return true;
+      return String(value || "").trim().length > 0;
+    }
+
+    function saveCurrentAnswer() {
+      const current = visibleQuestions()[index];
+      if (!current) return true;
+      const value = collectAnswer(current);
+      if (!validate(current, value)) {
+        statusEl.textContent = "This question is required.";
+        return false;
+      }
+      answers[current.id] = value;
+      statusEl.textContent = "";
+      return true;
+    }
+
+    function render() {
+      const list = visibleQuestions();
+      if (index >= list.length) index = list.length - 1;
+      if (index < 0) index = 0;
+
+      const current = list[index];
+      sectionEl.textContent = current.section;
+      questionEl.innerHTML = `${current.q}${current.required ? '<span class="req">*</span>' : ""}`;
+      inputWrapEl.innerHTML = "";
+
+      if (current.type === "text") {
+        inputWrapEl.appendChild(createTextInput(current.id, answers[current.id] || ""));
+      } else if (current.type === "textarea") {
+        inputWrapEl.appendChild(createTextarea(current.id, answers[current.id] || ""));
+      } else if (current.type === "radio") {
+        inputWrapEl.appendChild(createOptions(current));
+      } else if (current.type === "scale") {
+        inputWrapEl.appendChild(createScale(current));
+      }
+
+      const total = list.length;
+      const currentStep = index + 1;
+      stepLabelEl.textContent = `Question ${currentStep}`;
+      stepCountEl.textContent = `${currentStep} / ${total}`;
+      barEl.style.width = `${Math.round((currentStep / total) * 100)}%`;
+
+      backBtn.disabled = index === 0;
+      nextBtn.textContent = currentStep === total ? "Submit" : "Next";
+      hintEl.textContent = current.required ? "Required question" : "Optional question";
+
+      const focusTarget = inputWrapEl.querySelector("input, textarea");
+      if (focusTarget) focusTarget.focus();
+    }
+
+    async function submitForm() {
+      const botField = document.getElementById("botField").value.trim();
+      if (botField) {
+        statusEl.textContent = "Spam check failed.";
         return;
       }
 
-      event.preventDefault();
-      status.textContent = "Submitting your answers...";
+      if (Date.now() - submittedAt < 2500) {
+        statusEl.textContent = "Please take a moment before submitting.";
+        return;
+      }
 
-      const formData = new FormData(form);
+      statusEl.textContent = "Submitting...";
+      statusEl.classList.remove("success");
+
+      const payload = {
+        submitted_at: new Date().toISOString(),
+        ...answers
+      };
 
       try {
-        // Apps Script web apps work reliably with no-cors form posts.
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          body: formData,
-          mode: "no-cors"
-        });
-        status.textContent = "Submitted. Thank you for your response.";
-        form.reset();
-      } catch (error) {
-        status.textContent = "Submission failed. Please try again.";
+        if (GOOGLE_SCRIPT_URL) {
+          const body = new FormData();
+          Object.entries(payload).forEach(([key, value]) => body.append(key, value));
+          await fetch(GOOGLE_SCRIPT_URL, { method: "POST", body, mode: "no-cors" });
+        }
+
+        document.getElementById("form").innerHTML = `
+          <section class="q-card">
+            <p class="section">Completed</p>
+            <h2 class="q-title">Thank you for sharing honestly.</h2>
+            <p class="sub">This helps us have a meaningful conversation.</p>
+          </section>
+        `;
+      } catch (err) {
+        statusEl.textContent = "Submission failed. Please try again.";
+        return;
       }
+
+      statusEl.textContent = "Submitted successfully.";
+      statusEl.classList.add("success");
+    }
+
+    backBtn.addEventListener("click", () => {
+      if (!saveCurrentAnswer()) return;
+      index -= 1;
+      render();
     });
 
-    form.addEventListener("reset", () => {
-      status.textContent = "";
+    nextBtn.addEventListener("click", async () => {
+      if (!saveCurrentAnswer()) return;
+
+      const list = visibleQuestions();
+      if (index === list.length - 1) {
+        await submitForm();
+        return;
+      }
+
+      index += 1;
+      render();
     });
+
+    render();
   </script>
 </body>
 </html>
