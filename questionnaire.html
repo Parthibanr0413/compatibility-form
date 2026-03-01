@@ -6,20 +6,20 @@
   <title>Compatibility Conversation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f6f2ea;
+      --bg: #fff2f5;
       --card: #fffdf9;
-      --ink: #2f2a24;
-      --muted: #6b6258;
-      --line: #e6d9c8;
-      --brand: #b65c4c;
-      --brand-2: #d89a61;
-      --accent: #3f6d64;
+      --ink: #36272d;
+      --muted: #7a5f69;
+      --line: #f1d5de;
+      --brand: #e35d8d;
+      --brand-2: #f39a64;
+      --accent: #6f4b9f;
       --ok: #2c7a52;
-      --focus: 0 0 0 3px rgba(182, 92, 76, 0.25);
-      --shadow: 0 25px 60px rgba(61, 43, 30, 0.12);
+      --focus: 0 0 0 3px rgba(227, 93, 141, 0.22);
+      --shadow: 0 25px 60px rgba(158, 73, 99, 0.15);
     }
 
     * {
@@ -32,12 +32,38 @@
       font-family: "Manrope", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 14% 14%, #f4d8ce 0, transparent 35%),
-        radial-gradient(circle at 82% 80%, #efe0be 0, transparent 37%),
+        radial-gradient(circle at 14% 14%, #ffd1e0 0, transparent 35%),
+        radial-gradient(circle at 82% 80%, #ffe4ba 0, transparent 37%),
+        radial-gradient(circle at 80% 14%, #e8d8ff 0, transparent 33%),
         var(--bg);
       display: grid;
       place-items: center;
       padding: 1.4rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "❤";
+      position: fixed;
+      font-size: clamp(5rem, 12vw, 11rem);
+      color: rgba(227, 93, 141, 0.1);
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+      transform: rotate(-12deg);
+    }
+
+    body::before {
+      top: 3%;
+      left: 3%;
+    }
+
+    body::after {
+      bottom: 5%;
+      right: 4%;
+      transform: rotate(10deg);
     }
 
     .shell {
@@ -47,11 +73,13 @@
       border-radius: 26px;
       box-shadow: var(--shadow);
       overflow: hidden;
+      position: relative;
+      z-index: 1;
     }
 
     .head {
       padding: 1.3rem 1.4rem 0.8rem;
-      background: linear-gradient(130deg, rgba(182, 92, 76, 0.12), rgba(216, 154, 97, 0.17));
+      background: linear-gradient(130deg, rgba(227, 93, 141, 0.14), rgba(243, 154, 100, 0.19), rgba(111, 75, 159, 0.13));
       border-bottom: 1px solid var(--line);
     }
 
@@ -66,10 +94,11 @@
 
     h1 {
       margin: 0.4rem 0 0;
-      font-family: "Fraunces", serif;
+      font-family: "Dancing Script", cursive;
       font-size: clamp(1.45rem, 2vw, 2rem);
       line-height: 1.2;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
+      color: #9f2f66;
     }
 
     .sub {
@@ -94,7 +123,7 @@
 
     .progress {
       height: 10px;
-      background: #f2e9de;
+      background: #fae7ee;
       border-radius: 999px;
       overflow: hidden;
     }
@@ -114,7 +143,7 @@
       border: 1px solid var(--line);
       border-radius: 18px;
       padding: 1.05rem;
-      background: #fff;
+      background: linear-gradient(180deg, #ffffff, #fff9fb);
       min-height: 205px;
       animation: fade 260ms ease;
     }
@@ -137,7 +166,7 @@
     }
 
     .req {
-      color: #9f2f27;
+      color: #cb255a;
       font-weight: 700;
       margin-left: 0.25rem;
       font-size: 0.9em;
@@ -151,7 +180,7 @@
     textarea {
       width: 100%;
       border: 1px solid var(--line);
-      background: #fffdfb;
+      background: #fffdfd;
       border-radius: 12px;
       padding: 0.72rem 0.78rem;
       font: inherit;
@@ -167,7 +196,7 @@
     textarea:focus {
       outline: none;
       box-shadow: var(--focus);
-      border-color: #d38e7e;
+      border-color: #e35d8d;
     }
 
     .options {
@@ -180,7 +209,7 @@
       border: 1px solid var(--line);
       border-radius: 12px;
       padding: 0.65rem 0.7rem;
-      background: #fffdfb;
+      background: #fffafb;
       transition: border-color 150ms ease, background 150ms ease;
       display: flex;
       align-items: center;
@@ -189,8 +218,8 @@
     }
 
     .option:hover {
-      border-color: #d7b091;
-      background: #fff8ef;
+      border-color: #ec93b2;
+      background: #fff0f5;
     }
 
     .scale {
@@ -207,7 +236,7 @@
       text-align: center;
       font-weight: 600;
       cursor: pointer;
-      background: #fffdfb;
+      background: #fff9fb;
       font-size: 0.92rem;
     }
 
@@ -242,8 +271,8 @@
     }
 
     .btn-back {
-      background: #ece4d8;
-      color: #4f4136;
+      background: #f7e6ee;
+      color: #6e4357;
     }
 
     .btn-next {
@@ -256,7 +285,7 @@
       min-height: 1.15rem;
       margin: 0.55rem 0 0;
       font-weight: 600;
-      color: #9f2f27;
+      color: #b22e5a;
       font-size: 0.9rem;
     }
 
@@ -279,6 +308,13 @@
       margin: 0.65rem 0 0;
       color: var(--muted);
       font-size: 0.8rem;
+    }
+
+    .love-note {
+      margin: 0.35rem 0 0;
+      color: #9d4d74;
+      font-size: 0.88rem;
+      letter-spacing: 0.01em;
     }
 
     @keyframes fade {
@@ -315,6 +351,7 @@
     <header class="head">
       <p class="kicker">Compatibility Form</p>
       <h1>Compatibility Conversation</h1>
+      <p class="love-note">Built with care, honesty, and love.</p>
       <p class="sub">A respectful pre-marriage conversation to understand values, expectations, emotional connection, and future goals.</p>
     </header>
 
@@ -392,7 +429,8 @@
 
       { id: "q32_non_negotiables", section: "Open", q: "32) Non-negotiables", type: "textarea" },
       { id: "q33_flexible", section: "Open", q: "33) Flexible areas", type: "textarea" },
-      { id: "q34_anything_else", section: "Open", q: "34) Anything else to share?", type: "textarea" }
+      { id: "q34_anything_else", section: "Open", q: "34) Anything else to share?", type: "textarea" },
+      { id: "q35_like_profile", section: "Open", q: "35) Why do you like my profile?", type: "textarea", required: true }
     ];
 
     const answers = {};
@@ -562,14 +600,26 @@
 
       const payload = {
         submitted_at: new Date().toISOString(),
-        ...answers
+        form_title: "Compatibility Conversation"
       };
+      const questionIds = [...new Set(questions.map((q) => q.id))];
+      questionIds.forEach((id) => {
+        payload[id] = answers[id] || "";
+      });
 
       try {
         if (GOOGLE_SCRIPT_URL) {
-          const body = new FormData();
-          Object.entries(payload).forEach(([key, value]) => body.append(key, value));
-          await fetch(GOOGLE_SCRIPT_URL, { method: "POST", body, mode: "no-cors" });
+          const body = new URLSearchParams();
+          Object.entries(payload).forEach(([key, value]) => body.append(key, String(value)));
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            body,
+            mode: "no-cors",
+            headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }
+          });
+        } else {
+          statusEl.textContent = "Google Sheets URL is missing. Set GOOGLE_SCRIPT_URL first.";
+          return;
         }
 
         document.getElementById("form").innerHTML = `

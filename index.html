@@ -6,16 +6,16 @@
   <title>Compatibility Conversation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f4efe6;
-      --ink: #312920;
-      --muted: #6f6558;
-      --brand: #b65c4c;
-      --brand-2: #d89a61;
+      --bg: #fff2f5;
+      --ink: #36272d;
+      --muted: #7a5f69;
+      --brand: #e35d8d;
+      --brand-2: #f39a64;
       --panel: #fffdf9;
-      --shadow: 0 28px 65px rgba(73, 43, 25, 0.14);
+      --shadow: 0 28px 65px rgba(158, 73, 99, 0.15);
     }
 
     * {
@@ -28,12 +28,38 @@
       font-family: "Manrope", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 12% 14%, #f5d9ce 0, transparent 35%),
-        radial-gradient(circle at 86% 84%, #efe1c4 0, transparent 35%),
+        radial-gradient(circle at 12% 14%, #ffd1e0 0, transparent 35%),
+        radial-gradient(circle at 86% 84%, #ffe4ba 0, transparent 35%),
+        radial-gradient(circle at 80% 14%, #e8d8ff 0, transparent 33%),
         var(--bg);
       display: grid;
       place-items: center;
       padding: 1.2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "❤";
+      position: fixed;
+      font-size: clamp(5rem, 12vw, 11rem);
+      color: rgba(227, 93, 141, 0.1);
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+      transform: rotate(-12deg);
+    }
+
+    body::before {
+      top: 3%;
+      left: 3%;
+    }
+
+    body::after {
+      bottom: 5%;
+      right: 4%;
+      transform: rotate(10deg);
     }
 
     .card {
@@ -44,13 +70,16 @@
       border: 1px solid #f1e5d8;
       padding: 2rem 1.35rem;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
       margin: 0;
-      font-family: "Fraunces", serif;
+      font-family: "Dancing Script", cursive;
       font-size: clamp(1.7rem, 3vw, 2.4rem);
       line-height: 1.2;
+      color: #9f2f66;
     }
 
     p {
@@ -79,6 +108,7 @@
 <body>
   <main class="card">
     <h1>Compatibility Conversation</h1>
+    <p style="margin-top:0.25rem;color:#9d4d74;">Built with care, honesty, and love.</p>
     <p>This form is designed for a respectful pre-marriage discussion. It covers values, emotional connection, expectations, and future planning.</p>
     <a href="./questionnaire.html">Start the Form</a>
   </main>
