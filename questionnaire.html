@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Question Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --ink: #0e1320;
+      --card: #ffffff;
+      --muted: #5a6475;
+      --brand: #0d9488;
+      --brand-2: #1d4ed8;
+      --line: #d7dfef;
+      --focus: #f59e0b;
+      --ring: 0 0 0 3px rgba(245, 158, 11, 0.35);
+      --shadow: 0 24px 60px rgba(13, 78, 120, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 15%, #cffafe 0, rgba(207, 250, 254, 0) 38%),
+        radial-gradient(circle at 90% 85%, #dbeafe 0, rgba(219, 234, 254, 0) 42%),
+        var(--bg);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      width: min(920px, 92vw);
+      margin: 2.5rem auto;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #e0f2fe;
+      color: #0c4a6e;
+      border-radius: 999px;
+      padding: 0.4rem 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .card {
+      margin-top: 0.75rem;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.85));
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(4px);
+      overflow: hidden;
+      animation: rise 700ms ease-out;
+    }
+
+    .hero {
+      padding: 2.2rem 2rem 1.35rem;
+      background: linear-gradient(120deg, rgba(13, 148, 136, 0.15), rgba(29, 78, 216, 0.12));
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Sora", sans-serif;
+      font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 0.65rem 0 0;
+      max-width: 65ch;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.45;
+    }
+
+    form {
+      padding: 1.5rem 2rem 2rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .field {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 0.94rem;
+      letter-spacing: 0.01em;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.78rem 0.82rem;
+      font: inherit;
+      color: var(--ink);
+      background: #fff;
+      transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: 0;
+      border-color: var(--focus);
+      box-shadow: var(--ring);
+      transform: translateY(-1px);
+    }
+
+    .question-box {
+      border: 1px dashed #9ca3af;
+      border-radius: 16px;
+      padding: 1rem;
+      background: #f9fafb;
+      animation: fade 600ms ease forwards;
+    }
+
+    .question-head {
+      margin: 0 0 0.8rem;
+      font-weight: 700;
+      color: #1f2937;
+      font-size: 0.94rem;
+      letter-spacing: 0.01em;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.25rem;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 12px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0.8rem 1rem;
+    }
+
+    .btn-main {
+      color: white;
+      background: linear-gradient(120deg, var(--brand), var(--brand-2));
+      min-width: 180px;
+    }
+
+    .btn-main:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-ghost {
+      background: #e2e8f0;
+      color: #1f2937;
+    }
+
+    .status {
+      min-height: 1.2rem;
+      font-weight: 600;
+      color: #0f766e;
+      margin: 0;
+    }
+
+    footer {
+      padding: 0.8rem 2rem 1.6rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.99);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero,
+      form,
+      footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <span class="badge">Your Custom Survey Link</span>
+    <section class="card">
+      <div class="hero">
+        <h1>Question Hub</h1>
+        <p class="subtitle">
+          Ask anything you want and collect responses in one shareable link. Edit the questions and colors in this file to match your style.
+        </p>
+      </div>
+
+      <form name="question-hub" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="question-hub" />
+        <p hidden>
+          <label>Do not fill this out if you are human: <input name="bot-field" /></label>
+        </p>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="name">Your Name</label>
+            <input id="name" name="name" type="text" placeholder="Enter name" required />
+          </div>
+          <div class="field">
+            <label for="email">Your Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+
+        <div class="question-box">
+          <p class="question-head">Question 1: How satisfied are you with our service?</p>
+          <div class="field">
+            <select name="satisfaction" required>
+              <option value="">Choose one</option>
+              <option>Very satisfied</option>
+              <option>Satisfied</option>
+              <option>Neutral</option>
+              <option>Not satisfied</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="question-box">
+          <p class="question-head">Question 2: What did you like most?</p>
+          <div class="field">
+            <textarea name="liked_most" placeholder="Write your answer..." required></textarea>
+          </div>
+        </div>
+
+        <div class="question-box">
+          <p class="question-head">Question 3: What should we improve?</p>
+          <div class="field">
+            <textarea name="improvements" placeholder="Share your suggestions..."></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-main" type="submit">Send Answers</button>
+          <button class="btn-ghost" type="reset">Clear</button>
+        </div>
+        <p id="status" class="status" aria-live="polite"></p>
+      </form>
+
+      <footer>
+        Tip: Replace “Question Hub” and the 3 sample questions with your own text before sharing.
+        Optional: connect Google Sheets by setting <code>GOOGLE_SCRIPT_URL</code> in this file.
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    const form = document.querySelector("form");
+    const status = document.getElementById("status");
+    const GOOGLE_SCRIPT_URL = "";
+
+    form.addEventListener("submit", async (event) => {
+      if (!GOOGLE_SCRIPT_URL) {
+        status.textContent = "Submitting your answers...";
+        return;
+      }
+
+      event.preventDefault();
+      status.textContent = "Submitting your answers...";
+
+      const formData = new FormData(form);
+
+      try {
+        // Apps Script web apps work reliably with no-cors form posts.
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors"
+        });
+        status.textContent = "Submitted. Thank you for your response.";
+        form.reset();
+      } catch (error) {
+        status.textContent = "Submission failed. Please try again.";
+      }
+    });
+
+    form.addEventListener("reset", () => {
+      status.textContent = "";
+    });
+  </script>
+</body>
+</html>
