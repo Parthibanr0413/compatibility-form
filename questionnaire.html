@@ -310,6 +310,40 @@
       font-size: 0.8rem;
     }
 
+    .summary {
+      margin-top: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      padding: 0.8rem;
+      max-height: 55vh;
+      overflow: auto;
+    }
+
+    .summary-item {
+      padding: 0.55rem 0;
+      border-bottom: 1px dashed #efd7e0;
+    }
+
+    .summary-item:last-child {
+      border-bottom: 0;
+    }
+
+    .summary-q {
+      margin: 0;
+      font-weight: 700;
+      color: #7f2a56;
+      font-size: 0.92rem;
+    }
+
+    .summary-a {
+      margin: 0.25rem 0 0;
+      color: var(--ink);
+      white-space: pre-wrap;
+      line-height: 1.45;
+      font-size: 0.92rem;
+    }
+
     .love-note {
       margin: 0.35rem 0 0;
       color: #9d4d74;
@@ -536,6 +570,32 @@
       return String(value || "").trim().length > 0;
     }
 
+    function escapeHtml(text) {
+      return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function buildSummaryHtml() {
+      const items = questions.map((q) => {
+        const asked = typeof q.conditional === "function" ? q.conditional(answers) : true;
+        const value = answers[q.id] || "";
+        let shown = "Not answered";
+        if (!asked) shown = "Not applicable";
+        if (asked && value.trim()) shown = value;
+        return `
+          <div class="summary-item">
+            <p class="summary-q">${escapeHtml(q.q)}</p>
+            <p class="summary-a">${escapeHtml(shown)}</p>
+          </div>
+        `;
+      }).join("");
+      return `<div class="summary">${items}</div>`;
+    }
+
     function saveCurrentAnswer() {
       const current = visibleQuestions()[index];
       if (!current) return true;
@@ -627,6 +687,7 @@
             <p class="section">Completed</p>
             <h2 class="q-title">Thank you for sharing honestly.</h2>
             <p class="sub">This helps us have a meaningful conversation.</p>
+            ${buildSummaryHtml()}
           </section>
         `;
       } catch (err) {
